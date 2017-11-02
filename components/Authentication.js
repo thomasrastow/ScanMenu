@@ -37,8 +37,9 @@ class Authentication extends Component {
       });
     })
     .catch((err) => {
+      this.setState({ error: 'Authentication failed. '+err, loading: false });
         //Login was not successful, let's create a new account
-        firebase.auth().createUserWithEmailAndPassword(username, password)
+        /*firebase.auth().createUserWithEmailAndPassword(username, password)
         .then(() => { 
           this.setState({ error: '', loading: false });
           firebase.auth().currentUser.getIdToken().then(function(idToken) {
@@ -53,7 +54,7 @@ class Authentication extends Component {
         })
         .catch((err) => {
             this.setState({ error: 'Authentication failed. '+err, loading: false });
-        });
+        });*/
     });
   }
   renderButtonOrSpinner() {
