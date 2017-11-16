@@ -25,7 +25,8 @@ class HomePage extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
-    this.itemsRef = this.getRef().child('photos');
+    this.bookRef = this.getRef().child('cookBook');
+    this.productRef = this.getRef().child('products');
   }
   getRef() {
     return firebase.database().ref();
@@ -36,11 +37,15 @@ class HomePage extends Component {
       // get children as an array
       var items = [];
       snap.forEach((child) => {
-        items.push({
-          title: child.val().title,
-          url: child.val().url,
-          _key: child.key
-        });
+        child.recipes.forEach((recipe) => {
+          if(this.props.barcode !=null && recipe.val().ingredients.hasOwnProperty(this.props.barcode)){
+            items.push({
+              title: child.val().title,
+              url: child.val().url,
+              _key: child.key
+            });
+          }
+        }); 
       });
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
@@ -49,7 +54,7 @@ class HomePage extends Component {
     });
   }
   componentDidMount() {
-    this.listenForItems(this.itemsRef);
+    this.listenForItems(this.bookRef);
   }
   render() {
     return (

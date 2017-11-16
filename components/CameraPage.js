@@ -28,6 +28,7 @@ class CameraPage extends Component {
       path: null,
       barcode: null,
       barcodeType: null,
+      productName: null,
       progress: 100
     };
     this.fireRef = firebase.storage().ref('photos');
@@ -122,12 +123,13 @@ class CameraPage extends Component {
     );
   }
   _onBarCodeRead(e) {
-    this.setState({ barcode: e.data, barcodeType: e.type });
+    this.setState({ barcode: e.data, barcodeType: e.type }); 
+    Actions.HomePage({ barcode: e.data });
   }
-  renderBarCodeInfo() {
-    return (
+  
+  return (
       <View>
-        <Text>Barcode Found!</Text>
+        <Text>"Recipe Found!"</Text>
         <Text>{this.state.barcode}</Text>
         <Text>{this.state.barcodeType}</Text>
         <Icon 
@@ -139,6 +141,7 @@ class CameraPage extends Component {
       </View>
     )
   }
+}
   selectPage(){
     if(this.state.path){
       return this.renderImage();
