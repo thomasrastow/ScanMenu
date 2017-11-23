@@ -124,14 +124,11 @@ class CameraPage extends Component {
   }
   _onBarCodeRead(e) {
     this.setState({ barcode: e.data, barcodeType: e.type }); 
-    Actions.HomePage({ barcode: e.data });
   }
-  
+  renderBarCodeInfo() {
   return (
       <View>
-        <Text>"Recipe Found!"</Text>
-        <Text>{this.state.barcode}</Text>
-        <Text>{this.state.barcodeType}</Text>
+        <Text>"Ingrdient Found!"</Text>
         <Icon 
               name='cancel'
               type='material-community'
@@ -140,8 +137,8 @@ class CameraPage extends Component {
               onPress={() => this.setState({ barcode: null, barcodeType: null })}/>
       </View>
     )
+    Actions.HomePage({ barcode: e.data });
   }
-}
   selectPage(){
     if(this.state.path){
       return this.renderImage();

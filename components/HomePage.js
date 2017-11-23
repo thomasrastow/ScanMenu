@@ -31,31 +31,29 @@ class HomePage extends Component {
   getRef() {
     return firebase.database().ref();
   }
-  listenForItems(itemsRef) {
-    itemsRef.on('value', (snap) => {
+  listenForItems(bookRef) {
+     bookRef.on('value', (snap) => {
 
       // get children as an array
       var items = [];
       snap.forEach((child) => {
-        child.recipes.forEach((recipe) => {
-          if(this.props.barcode !=null && recipe.val().ingredients.hasOwnProperty(this.props.barcode)){
-            items.push({
-              title: child.val().title,
-              url: child.val().url,
-              _key: child.key
+        var recipes = child.val().recipes
+        for (var key in recipes){
+          if(this.props.barcode !=null && recipes[key]['ingredients'].hasOwnProperty(this.props.barcode)){
+            recipes.push({
+              name: recipes[key]['name']
             });
           }
-        }); 
+        }; 
       });
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
       });
-
     });
   }
   componentDidMount() {
     this.listenForItems(this.bookRef);
-  }
+    }
   render() {
     return (
       <KeyboardAvoidingView style={styles.listContainer} behavior="padding" >

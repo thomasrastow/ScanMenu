@@ -10,12 +10,12 @@ import CameraPage from './components/CameraPage';
 import DrawerContent from './components/DrawerContent';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAbQn5CP8cU80pFhrmmTmDw5w9SOc_QfGE",
-  authDomain: "securedbase-d861b.firebaseapp.com",
-  databaseURL: "https://securedbase-d861b.firebaseio.com",
-  projectId: "securedbase-d861b",
-  storageBucket: "securedbase-d861b.appspot.com",
-  messagingSenderId: "3497891805"
+  apiKey: "AIzaSyBy_zwRs7NZ_GZLzO5cU-FOx1axBSsUR_w",
+  authDomain: "scanapp-25187.firebaseapp.com",
+  databaseURL: "https://scanapp-25187.firebaseio.com",
+  projectId: "scanapp-25187",
+  storageBucket: "scanapp-25187.appspot.com",
+  messagingSenderId: "619341792086"
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 console.ignoredYellowBox = [

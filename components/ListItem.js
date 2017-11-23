@@ -8,10 +8,8 @@ class ListItem extends Component {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={styles.li}>
-          <Image 
-            style={styles.liImg}
-            source={{uri: this.props.item.url}}
-          />
+        
+
           <Text style={styles.liText}>{this.props.item.title}</Text>
         </View>
       </TouchableHighlight>
